@@ -152,7 +152,6 @@ namespace ParsingStrings.Tests
         }
 
         [TestCaseSource(nameof(TryParseDecimalData))]
-        [SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "data can't be null.")]
         public void TryParseDecimal_StrIsValid_ReturnsResult(object[] data)
         {
             // Arrange
@@ -175,7 +174,6 @@ namespace ParsingStrings.Tests
         }
 
         [TestCaseSource(nameof(ParseDecimalData))]
-        [SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "data can't be null.")]
         public void ParseDecimal_StrIsValid_ReturnsResult(object[] data)
         {
             // Arrange

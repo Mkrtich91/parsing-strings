@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 
 namespace ParsingStrings
 {
@@ -12,8 +13,14 @@ namespace ParsingStrings
         /// <returns>true if <paramref name="str"/> was converted successfully; otherwise, false.</returns>
         public static bool TryParseFloat(string? str, out float result)
         {
-            // TODO #19. Implement the method using "float.TryParse" method.
-            throw new NotImplementedException();
+            result = default;
+
+            if (str == null)
+            {
+                return false;
+            }
+
+            return float.TryParse(str, out result);
         }
 
         /// <summary>
@@ -23,8 +30,19 @@ namespace ParsingStrings
         /// <returns>A single-precision floating-point number equivalent to the numeric str or symbol specified in <paramref name="str"/>.  If a formatting error occurs returns NaN. </returns>
         public static float ParseFloat(string? str)
         {
-            // TODO #20. Implement the method using "float.Parse" method, and add exception handling.
-            throw new NotImplementedException();
+            if (str == null)
+            {
+                throw new ArgumentNullException(nameof(str));
+            }
+
+            try
+            {
+                return float.Parse(str, CultureInfo.InvariantCulture);
+            }
+            catch (FormatException)
+            {
+                return float.NaN;
+            }
         }
 
         /// <summary>
@@ -35,8 +53,21 @@ namespace ParsingStrings
         /// <returns>true if <paramref name="str"/> was converted successfully; otherwise, false.</returns>
         public static bool TryParseDouble(string? str, out double result)
         {
-            // TODO #21. Implement the method using "double.TryParse" method.
-            throw new NotImplementedException();
+            result = default;
+
+            if (str == null)
+            {
+                return false;
+            }
+
+            try
+            {
+                return double.TryParse(str, out result);
+            }
+            catch (FormatException)
+            {
+                return false;
+            }
         }
 
         /// <summary>
@@ -46,8 +77,19 @@ namespace ParsingStrings
         /// <returns>A double-precision floating-point number equivalent to the numeric str or symbol specified in <paramref name="str"/>. If a formatting error occurs returns Epsilon.</returns>
         public static double ParseDouble(string? str)
         {
-            // TODO #22. Implement the method using "double.Parse" method, and add exception handling.
-            throw new NotImplementedException();
+            if (str == null)
+            {
+                throw new ArgumentNullException(nameof(str));
+            }
+
+            try
+            {
+                return double.Parse(str, CultureInfo.InvariantCulture);
+            }
+            catch (FormatException)
+            {
+                return double.Epsilon;
+            }
         }
 
         /// <summary>
@@ -58,8 +100,14 @@ namespace ParsingStrings
         /// <returns>true if <paramref name="str"/> was converted successfully; otherwise, false.</returns>
         public static bool TryParseDecimal(string? str, out decimal result)
         {
-            // TODO #23. Implement the method using "decimal.TryParse" method.
-            throw new NotImplementedException();
+            result = default;
+
+            if (str == null)
+            {
+                return false;
+            }
+
+            return decimal.TryParse(str, out result);
         }
 
         /// <summary>
@@ -69,8 +117,23 @@ namespace ParsingStrings
         /// <returns>The equivalent to the number contained in <paramref name="str"/>.</returns>
         public static decimal ParseDecimal(string? str)
         {
-            // TODO #24. Implement the method using "decimal.Parse" method, and add exception handling.
-            throw new NotImplementedException();
+            if (str == null)
+            {
+                throw new ArgumentNullException(nameof(str));
+            }
+
+            try
+            {
+                return decimal.Parse(str, CultureInfo.InvariantCulture);
+            }
+            catch (FormatException)
+            {
+                return -1.1m;
+            }
+            catch (OverflowException)
+            {
+                return -2.2m;
+            }
         }
     }
 }
